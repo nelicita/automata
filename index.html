@@ -6,26 +6,60 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
+		<div id="penz"></div>
 		<div class="container automata">
 			<div class="bal" id="bal">
 			</div>
 			<div class="jobb">
 				<div class="kepernyo" id="kepernyo"></div>
 				<div class="gombok" id="gombok"></div>
-				<button>OK</button>
+				<button onclick="vasarlas()">OK</button>
+				<div class="tarolo" id="tarolo"></div>			
 			</div>
 			<script>
 				let gomb_tarolo = document.getElementById("gombok");
+
 				for(let i=1;i<=9;i++){
-					gomb_tarolo.innerHTML += '<button onclick="katt('+ i +')">' + i + "<button>";
+					gomb_tarolo.innerHTML += '<button onclick="katt('+ i +')">' + i + "</button>";
 				}
+
+				let kivalasztott=-1;
 				function katt(szam){
 					alert(szam);
 					document.getElementById("kepernyo").innerHTML=szam;
+					kivalasztott=szam;
+				}
+				function vasarlas(){
+					if(udito_kepek[kivalasztott-1]==undefined){
+						document.getElementById("kepernyo").innerHTML="Elfogyott!"
+					}else{
+						alert("Megvetted a"+udito_kepek[kivalasztott-1]+" számú üdítőt")
+						document.getElementById("tarolo").innerHTML='<img src=" '+udito_kepek[kivalasztott-1]+'">';
+						penz-=udito_arak[kivalasztott-1];
+						document.getElementById("penz").innerHTML=penz+" ft";
+					}					
 				}
 				let uditok = document.getElementById("bal");
-				for(let i=1;i<=3;i++){
-					uditok.innerHTML += '<img src=";
+				let udito_kepek=[
+					"apenta.jpg",
+					"cocacola.png",
+					"cola.jpg",
+					"hellkave.jpg",
+					"kinley.jpg",
+					"marka.jpg",
+				];
+				let udito_arak=[
+					150,
+					250,
+					300,
+					290,
+					320,
+					100,
+				];
+				let penz=2000;
+				document.getElementById("penz").innerHTML=penz+" ft";
+				for(let i=0;i<udito_kepek.length;i++){
+					uditok.innerHTML += '<div><img src="'+udito_kepek[i]+'">'+ (i+1) + '<br>'+udito_arak[i]+'ft</div>';
 				}
 			</script>
 	</body>
